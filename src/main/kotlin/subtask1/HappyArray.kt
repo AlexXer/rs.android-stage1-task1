@@ -5,21 +5,19 @@ class HappyArray {
     // TODO: Complete the following function
     fun convertToHappy(sadArray: IntArray): IntArray {
         var isEmpty = false
-        var happyList =sadArray.toMutableList()
-        if (sadArray.size == 0) {
+        val happyList = sadArray.toMutableList()
+        if (sadArray.isEmpty()) {
             isEmpty = true
         } else {
-            var isModified = true
-            while (isModified) {
-                isModified = false
-                for (index in happyList.indices) {
-                    if (index != 0 && index != happyList.lastIndex && happyList[index] > happyList[index - 1] + happyList[index + 1]) {
-                        happyList.removeAt(index)
-                        isModified = true
-                        break
-                    }
+            var index = 1
+            while (index != happyList.size - 1) {
+                if (happyList[index] > happyList[index + 1] + happyList[index - 1]) {
+                    happyList.removeAt(index)
+                    if (index != 1)
+                        index--
+                } else {
+                    index++
                 }
-
             }
         }
 
